@@ -1,0 +1,26 @@
+<div class="panel">
+    <div class="panel_head">
+        最新文章
+    </div>
+    <div class="list_group">
+        <ul>
+            <volist name="newsest" id="vo">
+                <li>
+                    <a href="__URL__/article/id/<{$vo.id}>" class="list_group_item">
+                        <{$vo.title}>
+                    </a>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</div>
+<!-- <script type="text/javascript">
+$(document).ready(function() {
+    //加载完成过后异步赋值
+    $.get("__URL__/sidenew", {
+
+    }, function(data) {
+        console.dir(data);
+    });
+});
+</script> -->

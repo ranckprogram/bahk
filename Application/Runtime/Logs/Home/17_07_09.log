@@ -1,0 +1,5 @@
+[ 2017-07-09T00:44:28+08:00 ] ::1 /w/index.php/Home/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+

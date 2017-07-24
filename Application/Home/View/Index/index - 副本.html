@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common.css" />
+</head>
+
+<body>
+    <block name="include">
+        <include file="Public:header" />
+    </block>
+    <div class="wrapper">
+        <div class="content">
+            <div class="breadcrumb">
+                <ul>
+                    <li>
+                        <a href="__URL__/index">首页</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">php</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="list_content list_tit">
+                <volist name="news" id="vo">
+                    <dl>
+                        <dt>
+                            <a href="__URL__/article/id/<{$vo.id}>">
+                                <{$vo.title}>
+                            </a>
+                        </dt>
+                        <dd>
+                            <span><{$vo.views|default="0"}>人浏览</span>
+                            <time>
+                                <{$vo.time|strtotime|date='Y-m-d' ,###}>
+                            </time>
+                        </dd>
+                    </dl>
+                </volist>
+            </div>
+            <div class="pagination" data-curPage="<{$page}>" data-total="<{$total}>">
+                <ul>
+                    <li>
+                        <a href="__URL__/index/page/<{$page-1}>" class="pre">上一页</a>
+                    </li>
+                    <if condition="$total gt  5 ">
+                        <for start="1" end="5" name="i">
+                            <li>
+                                <a href="__URL__/page/page/<{$i}>" class="">
+                                    <{$i}>
+                                </a>
+                            </li>
+                        </for>
+                        <li>
+                            <a href="javascript:;" class="">...</a>
+                        </li>
+                        <else />
+                        <for start="1" end="$total" name="i"> 
+                            <li>
+                                <a href="__URL__/index/page/<{$i}>" class="">
+                                    <{$i}>
+                                </a>
+                            </li>
+                        </for>
+                    </if>
+                    <li>
+                        <a href="__URL__/index/page/<{$total}>" class="">
+                            <{$total}>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="__URL__/index/page/<{$page+1}>" class="next">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <aside class="aside">
+            <!--  <block name="include"> -->
+                <include file="Public/sidenew" /> 
+            <!-- </block> -->
+            <block name="include">
+                <include file="Public/sidehot" />
+            </block>
+        </aside>
+        <div class="clean"></div>
+    </div>
+    <footer></footer>
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    //alert($(".pagination").attr("data-curPage"));
+    $(".pagination").on("click", ".pre", function(e) {
+
+        if ($(".pagination").attr("data-curPage") == 1) {
+            e.preventDefault();
+        }
+    });
+    $(".pagination").on("click", ".next", function(e) {
+
+        if ($(".pagination").attr("data-total") == $(".pagination").attr("data-curPage")) {
+            e.preventDefault();
+        }
+
+    });
+});
+</script>
+
+</html>
